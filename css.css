@@ -939,3 +939,67 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
     display: block;
   }
 }
+/* Featured work: actual screens lead, with readable context alongside. */
+#WORKS.view-section { display: block; padding: 88px clamp(20px, 4vw, 64px); }
+.projects-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; margin-bottom: 32px; }
+.projects-heading h2 { font-family: 'Playfair Display', serif; font-size: clamp(34px, 4vw, 52px); line-height: 1.15; letter-spacing: -0.025em; }
+.projects-heading p { font-size: 15px; line-height: 1.7; color: #555; max-width: 54ch; margin-top: 16px; }
+.projects-github { display: inline-flex; align-items: center; gap: 9px; flex-shrink: 0; min-height: 44px; color: #333; font-size: 13px; text-decoration: underline; text-underline-offset: 5px; }
+.project-filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 0 20px; border-bottom: 1px solid #ddd; }
+.project-filters button { min-height: 44px; padding: 9px 15px; background: #f5f5f5; border: 1px solid transparent; border-radius: 24px; color: #444; font: inherit; font-size: 13px; cursor: pointer; }
+.project-filters button[aria-pressed='true'] { background: #111; color: #fff; }
+.project-filters button:hover { border-color: #777; }
+.projects-count { margin: 18px 0 24px; color: #555; font-size: 13px; }
+.projects-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; row-gap: 48px; }
+.project-entry { min-width: 0; display: flex; flex-direction: column; }
+.project-image-button { position: relative; display: block; width: 100%; background: #f2f2f2; border: 1px solid #e3e3e3; border-radius: 12px; overflow: hidden; cursor: zoom-in; padding: 0; }
+.project-image-button img { display: block; width: 100%; height: auto; aspect-ratio: 1.44; object-fit: cover; object-position: top; }
+.project-preview-label { position: absolute; bottom: 12px; right: 12px; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; padding: 9px 12px; border-radius: 6px; background: #111; color: white; opacity: 0; transition: opacity .18s; }
+.project-preview-label svg { width: 14px; height: 14px; }
+.project-image-button:hover .project-preview-label, .project-image-button:focus-visible .project-preview-label { opacity: 1; }
+.project-copy { padding-top: 22px; display: flex; flex-direction: column; flex: 1; }
+.project-meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; color: #555; font-size: 12px; margin-bottom: 12px; }
+.project-status { padding: 5px 9px; border-radius: 5px; color: #555; background: #f3f3f3; }
+.project-status-live { color: #216049; background: #eaf4ef; }
+.project-copy h3 { font-family: 'Playfair Display', serif; font-size: 28px; line-height: 1.2; color: #111; margin-bottom: 12px; }
+.project-description { font-size: 14px; color: #444; line-height: 1.8; max-width: 65ch; }
+.project-stack { font-size: 12px; color: #555; margin-top: 16px; }
+.project-note { font-size: 12px; color: #666; line-height: 1.7; margin-top: 10px; max-width: 60ch; }
+.project-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 20px; padding-top: 18px; margin-top: auto; }
+.project-actions a, .project-actions button, .project-dialog footer a { display: inline-flex; align-items: center; justify-content: center; gap: 7px; min-height: 44px; color: #333; font-size: 13px; font-weight: 500; text-decoration: underline; text-underline-offset: 4px; background: none; border: none; cursor: pointer; padding: 0; }
+.project-actions .project-live-link { background: #111; color: white; padding: 10px 14px; border-radius: 5px; text-decoration: none; }
+.project-actions a:hover, .project-actions button:hover { text-decoration-thickness: 2px; }
+.project-actions svg { width: 16px; height: 16px; }
+.project-entry-lead { grid-column: 1 / -1; display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; background: #f6f7fb; border-radius: 16px; padding: 28px; }
+.project-entry-lead .project-copy { padding: 0; }
+.project-entry-lead h3 { font-size: 40px; }
+.project-entry-lead .project-actions { margin-top: 10px; }
+.project-dialog { position: fixed; inset: 0; width: min(1120px, calc(100% - 40px)); max-height: 92dvh; margin: auto; padding: 0; color: #111; background: #fff; border: none; border-radius: 12px; overflow: auto; }
+.project-dialog::backdrop { background: rgb(0 0 0 / .75); }
+.project-dialog-content > header { position: sticky; top: 0; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 18px 24px; background: #fff; border-bottom: 1px solid #ddd; }
+.project-dialog h3 { font-size: 22px; font-family: 'Playfair Display', serif; }
+.project-dialog header p { font-size: 12px; color: #555; margin-top: 5px; }
+.project-dialog header button { min-height: 44px; border: 1px solid #aaa; border-radius: 5px; padding: 10px 14px; background: #fff; font-size: 13px; cursor: pointer; flex-shrink: 0; }
+.project-dialog-image img { display: block; width: 100%; height: auto; }
+.project-dialog footer { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 20px 24px; border-top: 1px solid #ddd; }
+.project-dialog footer p { font-size: 14px; color: #444; line-height: 1.7; max-width: 70ch; }
+.project-dialog footer a { white-space: nowrap; }
+@media (max-width: 800px) {
+  .projects-heading { display: block; }
+  .projects-github { margin-top: 12px; }
+  .projects-gallery { gap: 36px 24px; }
+  .project-entry-lead { display: flex; padding: 20px; gap: 0; }
+  .project-entry-lead .project-copy { padding-top: 22px; }
+  .project-entry-lead h3 { font-size: 32px; }
+}
+@media (max-width: 600px) {
+  .projects-gallery { grid-template-columns: minmax(0, 1fr); row-gap: 40px; }
+  .project-entry-lead { padding: 16px; }
+  .project-copy h3 { font-size: 28px; }
+  .project-filters { gap: 6px; }
+  .project-filters button { padding: 8px 12px; font-size: 12px; }
+  .project-dialog { width: calc(100% - 20px); }
+  .project-dialog-content > header { padding: 14px; }
+  .project-dialog header button { max-width: 110px; }
+  .project-dialog footer { flex-direction: column; align-items: flex-start; padding: 16px; gap: 8px; }
+}

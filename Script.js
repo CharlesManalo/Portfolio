@@ -1125,6 +1125,74 @@ const GitHubCalendar = ({ src, profile }) => {
   );
 };
 
+const FEATURED_PROJECTS = [
+  { id: "droply", name: "Droply", category: "Apps & tools", status: "In development", image: "images/projects/droply.png", capture: "Local build · Sign-in page", description: "A water-refill app that brings customers and their local station closer. I’m building a place to manage water accounts, refills, pickups, and deliveries without the back-and-forth.", stack: "React / TypeScript / Vite", note: "Still in development. This screenshot is from the local build." },
+  { id: "geotrix", name: "GeoTrix", category: "Learning", status: "Live website", image: "images/projects/geotrix.png", capture: "Live website · Landing page", description: "Geometry feels easier when you can see it in action. GeoTrix helps Grade 11 students work through lessons, try practice questions, and learn through games, with Dani, Yanna, and Juli along the way.", stack: "Next.js / React", live: "https://geo-measure-six.vercel.app/", repo: "GeoMeasures" },
+  { id: "codelyt", name: "CodeLyt", category: "Learning", status: "In development", image: "images/projects/codelyt.png", capture: "Local build · Landing page", description: "A friendlier place to learn programming by actually writing code. Students can explore lessons and keep trying, while teachers can manage classrooms, share activities, and review their work.", stack: "Next.js / Monaco Editor", repo: "CodeLyt", note: "Local build preview. A public app link is not available yet." },
+  { id: "omnipos", name: "OmniPOS", category: "Apps & tools", status: "Windows app", image: "images/projects/omnipos.png", capture: "Development screenshot · Checkout with sample data", description: "A point-of-sale app for the everyday work of running a shop: ringing up sales, keeping track of products, and checking sales history. A separate developer app handles client accounts and subscriptions.", stack: "Windows desktop / TypeScript", repo: "OmniPOS", note: "Desktop application. The screenshot shows development sample data." },
+  { id: "eduardos", name: "Eduardo’s Resort", category: "Hospitality", status: "Live website", image: "images/projects/eduardos.png", capture: "Live website · Home page", description: "A relaxed, photo-led website for Eduardo’s Resort in Calapan. It brings stays, celebrations, and day visits together so visitors can get a feel for the place and start planning their trip.", stack: "Responsive web design", live: "https://charlesmanalo.github.io/Eduardos-Resort/", repo: "Eduardos-Resort" },
+  { id: "filipiniana", name: "Filipiniana Hotel", category: "Hospitality", status: "Live website", image: "images/projects/filipiniana.png", capture: "Live website · Home page", description: "A welcoming website for Filipiniana Hotel in Calapan, with rooms, dining, leisure, and events in one place. The focus is on helping guests explore their options before making an inquiry.", stack: "Responsive web design", live: "https://charlesmanalo.github.io/Filipiniana-Hotel/", repo: "Filipiniana-Hotel" },
+  { id: "tala", name: "Tala & Tide", category: "Client websites", status: "Live concept site", image: "images/projects/tala.png", capture: "Live website · Home page", description: "A beach-resort concept made for a client tourism project. It’s built around family trips and barkada weekends, with packages, travel information, and a group cost calculator to help plan the visit.", stack: "HTML / CSS / JavaScript", live: "https://charlesmanalo.github.io/tala-and-tide-resort/", repo: "tala-and-tide-resort", note: "Fictional resort concept; inquiries prepare a draft, not a confirmed booking." },
+  { id: "aurelia", name: "Aurelia House", category: "Client websites", status: "Live concept site", image: "images/projects/aurelia.png", capture: "Live website · Home page", description: "A boutique-hotel concept for a client tourism project, set in Iloilo City. A quieter layout puts rooms and packages first, with a room finder that helps visitors narrow down their stay.", stack: "HTML / CSS / JavaScript", live: "https://charlesmanalo.github.io/aurelia-house-hotel/", repo: "aurelia-house-hotel", note: "Fictional hotel concept; inquiries prepare a draft, not a confirmed booking." },
+  { id: "amihan", name: "Amihan Ridge", category: "Client websites", status: "Live concept site", image: "images/projects/amihan.png", capture: "Live website · Home page", description: "A highland eco-resort concept for a client tourism project in Atok. The site brings together outdoor experiences, packages, and a trip planner, with a visual style inspired by the mountains.", stack: "HTML / CSS / JavaScript", live: "https://charlesmanalo.github.io/amihan-ridge-resort/", repo: "amihan-ridge-resort", note: "Fictional resort concept; inquiries prepare a draft, not a confirmed booking." },
+  { id: "examzz", name: "Examzz", category: "Earlier work", status: "Web app", image: "images/Examzz.png", capture: "Project screenshot", description: "An online examination platform for creating tests, checking answers, and managing assessments in one place.", live: "https://examzz.vercel.app/" },
+  { id: "actionagad", name: "ActionAgad", category: "Earlier work", status: "Web app", image: "images/AksyonAgad.png", capture: "Project screenshot", description: "A community reporting platform that helps people flag infrastructure hazards and keep track of reported issues.", live: "https://communitysafev3.onrender.com/", repo: "communitysafev3" },
+  { id: "omnhs", name: "OMNHS Website", category: "Earlier work", status: "School website", image: "images/OMNHS.png", capture: "Project screenshot", description: "A school information portal that puts announcements and useful resources within easy reach of students and visitors." }
+];
+
+const FeaturedProjects = () => {
+  const [category, setCategory] = useState("All projects");
+  const [preview, setPreview] = useState(null);
+  const dialogRef = useRef(null);
+  const categories = ["All projects", "Apps & tools", "Learning", "Hospitality", "Client websites", "Earlier work"];
+  const visible = FEATURED_PROJECTS.filter(project => category === "All projects" || project.category === category);
+  useEffect(() => {
+    if (preview) dialogRef.current?.showModal();
+  }, [preview]);
+  const closePreview = () => { dialogRef.current?.close(); setPreview(null); };
+  return (
+    <>
+      <header className="projects-heading">
+        <div><h2>Featured projects</h2><p>Things I’ve built, from learning platforms and everyday tools to places worth exploring.</p></div>
+        <a href="https://github.com/CharlesManalo" target="_blank" rel="noopener noreferrer" className="projects-github"><IconGithub /> More on GitHub</a>
+      </header>
+      <div className="project-filters" role="group" aria-label="Filter projects by category">
+        {categories.map(item => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}
+      </div>
+      <p className="projects-count" role="status">{visible.length} {visible.length === 1 ? "project" : "projects"}{category === "All projects" ? " to explore" : ` in ${category.toLowerCase()}`}</p>
+      <div className="projects-gallery">
+        {visible.map(project => (
+          <article key={project.id} className={`project-entry ${project.id === "droply" ? "project-entry-lead" : ""}`}>
+            <button type="button" className="project-image-button" aria-label={`View ${project.name} screenshot`} onClick={() => setPreview(project)}>
+              <img src={project.image} alt={`${project.name} — ${project.capture.toLowerCase()}`} width="1440" height="1000" loading="lazy" decoding="async" />
+              <span className="project-preview-label">View screenshot <IconExternalLink /></span>
+            </button>
+            <div className="project-copy">
+              <div className="project-meta"><span>{project.category}</span><span className={`project-status ${project.live ? "project-status-live" : ""}`}>{project.status}</span></div>
+              <h3>{project.name}</h3>
+              <p className="project-description">{project.description}</p>
+              {project.stack && <p className="project-stack">{project.stack}</p>}
+              {project.note && <p className="project-note">{project.note}</p>}
+              <div className="project-actions">
+                {project.live && <a className="project-live-link" href={project.live} target="_blank" rel="noopener noreferrer">Visit website <IconExternalLink /></a>}
+                <button type="button" onClick={() => setPreview(project)}>Screenshot</button>
+                {project.repo && <a href={`https://github.com/CharlesManalo/${project.repo}`} target="_blank" rel="noopener noreferrer" aria-label={`${project.name} source on GitHub`}><IconGithub /> Source</a>}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+      <dialog ref={dialogRef} className="project-dialog" aria-labelledby="project-preview-title" onClose={() => setPreview(null)} onClick={event => { if (event.target === event.currentTarget) closePreview(); }}>
+        {preview && <div className="project-dialog-content">
+          <header><div><h3 id="project-preview-title">{preview.name}</h3><p>{preview.capture}</p></div><button type="button" autoFocus onClick={closePreview}>Close preview</button></header>
+          <div className="project-dialog-image"><img src={preview.image} alt={`${preview.name} screenshot`} /></div>
+          <footer><p>{preview.description}</p>{preview.live && <a href={preview.live} target="_blank" rel="noopener noreferrer">Visit website <IconExternalLink /></a>}</footer>
+        </div>}
+      </dialog>
+    </>
+  );
+};
+
 const App = () => {
   const githubProfile = "https://github.com/CharlesManalo";
   const githubCalendar = "https://ghchart.rshah.org/CharlesManalo";
@@ -1152,8 +1220,8 @@ const App = () => {
     const mainElement = document.querySelector(".main");
     const options = {
       root: mainElement,
-      rootMargin: "0px",
-      threshold: 0.5,
+      rootMargin: "-15% 0px -65% 0px",
+      threshold: 0,
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -1811,76 +1879,7 @@ const App = () => {
         </section>
         <section id="WORKS" className="view-section px-6 md:px-16 py-24 flex flex-col justify-center bg-white z-10 w-full relative">
           <div className="max-w-6xl w-full mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Selected Works</h2>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-              
-              {/* Featured Card */}
-              <div className="lg:col-span-2 group rounded-xl border border-gray-200 overflow-hidden bg-gray-50 flex flex-col transition hover:border-gray-300">
-                <div className="aspect-[16/10] bg-gray-200 w-full overflow-hidden relative">
-                  <img src="images/Examzz.png" alt="Examzz Screenshot" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" />
-                </div>
-                <div className="p-6 md:p-8 flex flex-col flex-1">
-                  <div className="flex justify-between items-start mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900">Examzz</h3>
-                      <p className="text-sm text-gray-500 mt-1">Online Examination and Assessment Platform</p>
-                    </div>
-                    <div className="flex gap-2">
-                       <a href={githubProfile} target="_blank" rel="noopener noreferrer" className="p-2 border border-gray-200 rounded-md hover:bg-gray-100 transition text-gray-700" title="GitHub profile">
-                          <IconGithub />
-                       </a>
-                       <a href="https://examzz.vercel.app/" target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition" title="Live Site">
-                          <IconExternalLink />
-                       </a>
-                    </div>
-                  </div>
-                  <p className="text-gray-600 mt-auto text-sm md:text-base leading-relaxed">
-                    An intuitive online examination platform enabling seamless test creation, automated grading, and comprehensive assessment management.
-                  </p>
-                </div>
-              </div>
-
-              {/* Two smaller cards */}
-              <div className="flex flex-col gap-6">
-                
-                {/* Card 2 */}
-                <div className="flex-1 group rounded-xl border border-gray-200 overflow-hidden bg-gray-50 flex flex-col transition hover:border-gray-300">
-                  <div className="aspect-video bg-gray-200 w-full overflow-hidden relative">
-                    <img src="images/AksyonAgad.png" alt="ActionAgad Screenshot" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" />
-                  </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-lg font-bold text-gray-900">ActionAgad</h3>
-                      <div className="flex gap-2">
-                         <a href={githubProfile} target="_blank" rel="noopener noreferrer" className="p-1.5 border border-gray-200 rounded-md hover:bg-gray-100 transition text-gray-700" title="GitHub profile">
-                            <IconGithub />
-                         </a>
-                         <a href="https://communitysafev3.onrender.com/" target="_blank" rel="noopener noreferrer" className="p-1.5 bg-gray-900 text-white rounded-md hover:bg-gray-800 transition" title="Live Site">
-                            <IconExternalLink />
-                         </a>
-                       </div>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-4">CommunitySafe infrastructure hazard reporting platform.</p>
-                  </div>
-                </div>
-
-                {/* Card 3 */}
-                <div className="flex-1 group rounded-xl border border-gray-200 overflow-hidden bg-gray-50 flex flex-col transition hover:border-gray-300">
-                  <div className="aspect-video bg-gray-200 w-full overflow-hidden relative">
-                    <img src="images/OMNHS.png" alt="OMNHS Website Screenshot" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]" />
-                  </div>
-                  <div className="p-5 flex flex-col flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                       <h3 className="text-lg font-bold text-gray-900">OMNHS Website</h3>
-                    </div>
-                    <p className="text-sm text-gray-600 mb-4">An informational school portal providing announcements and resources.</p>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
+            <FeaturedProjects />
 
             <div className="mt-10 border-t border-gray-200 pt-8">
               <div className="flex flex-wrap items-end justify-between gap-4 mb-4">
