@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fbf8f4">
+  <meta name="description" content="Charles Austin Manalo builds custom digital menus, ordering pages, sales trackers, and other tools for cafés, restaurants, and local shops.">
+  <title>Charles Austin Manalo | Digital Business Card</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="card.css">
+  <script src="card.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead frame">
+    <a class="wordmark" href="#main" aria-label="Charles Austin Manalo, home">CAM<span class="period">.</span></a>
+    <nav aria-label="Card navigation">
+      <a href="#services">Services</a>
+      <a href="https://charlesmanalo.github.io/Portfolio/">Portfolio</a>
+      <a class="nav-contact" href="#contact">Contact</a>
+    </nav>
+  </header>
+  <main id="main" class="frame" tabindex="-1">
+    <section class="hero" aria-labelledby="name">
+      <div class="intro">
+        <div class="identity">
+          <h1 id="name">Charles Austin <span>Manalo<span class="period">.</span></span></h1>
+          <p class="role">Developer &amp; designer</p>
+        </div>
+        <div class="intro-details">
+          <p class="offer">Custom digital tools for local businesses.</p>
+          <p class="lede">From QR menus and online pre-orders to sales tracking, I build tools that help cafés, restaurants, and local shops serve customers and run day to day.</p>
+          <div class="actions">
+            <a class="button primary" href="#contact">Discuss a project</a>
+            <a class="button secondary" href="charles-austin-manalo.vcf" download>Save contact</a>
+          </div>
+        </div>
+      </div>
+      <div class="portrait-mat">
+        <img src="portrait.png" width="759" height="747" alt="Charles Austin Manalo looking out over the water" fetchpriority="high">
+      </div>
+    </section>
+
+    <section id="services" class="services" aria-labelledby="service-title">
+      <div class="section-heading">
+        <h2 id="service-title">Services for your business</h2>
+        <p>Choose the service that fits your business, or ask about a custom setup.</p>
+      </div>
+      <div class="service-list">
+        <article class="service-group discovery">
+          <h3>Get discovered</h3>
+          <dl>
+            <div><dt>Google Maps &amp; Business Profile</dt><dd>Set up your listing so customers can find your location and hours.</dd></div>
+            <div><dt>Menu photos &amp; promo posters</dt><dd>Showcase your menu and offers with photos and graphics for print and social media.</dd></div>
+            <div><dt>Facebook &amp; Instagram management</dt><dd>Keep your pages current with accurate details and a consistent posting schedule.</dd></div>
+            <div><dt>Daily specials &amp; promo posting</dt><dd>Share limited-time offers and daily specials when they’re available.</dd></div>
+          </dl>
+        </article>
+        <article class="service-group operations">
+          <h3>Serve &amp; sell</h3>
+          <dl>
+            <div><dt>QR digital menu</dt><dd>Give customers a mobile-friendly menu they can open by scanning a table QR code.</dd></div>
+            <div><dt>Online pre-order page</dt><dd>Take pre-orders through Messenger and give customers GCash payment instructions.</dd></div>
+            <div><dt>Simple POS &amp; sales tracker</dt><dd>Record transactions and see how much you sold each day.</dd></div>
+            <div><dt>Table queue or reservations</dt><dd>Keep track of waiting guests or manage table bookings in one place.</dd></div>
+          </dl>
+        </article>
+        <article class="service-group retention">
+          <h3>Bring customers back</h3>
+          <dl>
+            <div><dt>Digital loyalty / stamp card</dt><dd>Give repeat customers a simple way to earn and redeem rewards.</dd></div>
+            <div><dt>Customer review collection</dt><dd>Set up a direct review link or QR code so customers can leave feedback after a visit.</dd></div>
+          </dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <div>
+        <h2 id="contact-title">Tell me what your business needs.</h2>
+        <p>Share your business name and what you’d like to set up or improve.</p>
+        <button class="button share contact-actions" id="share-card" type="button" aria-expanded="false" aria-controls="share-panel" hidden>Share this card</button>
+      </div>
+      <ul class="contact-links" aria-label="Contact and social links">
+        <li>
+          <a href="mailto:charlesaustinmanalo@gmail.com?subject=Business%20project%20inquiry">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+            <span><strong>Email</strong><span>charlesaustinmanalo@gmail.com</span></span>
+          </a>
+        </li>
+        <li>
+          <a href="https://github.com/CharlesManalo">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 20c-4 1-4-2-6-3m12 5v-3.6c0-1-.3-1.6-.7-2 2.4-.3 5-1.2 5-5.5 0-1.2-.5-2.2-1.2-3 .1-.3.5-1.5-.2-3.1 0 0-1-.3-3.3 1.2a12 12 0 0 0-6 0C6.3 4.5 5.3 4.8 5.3 4.8c-.7 1.6-.3 2.8-.2 3.1a4.3 4.3 0 0 0-1.2 3c0 4.3 2.6 5.2 5 5.5-.4.4-.7 1-.7 2V22"/></svg>
+            <span><strong>GitHub</strong><span>CharlesManalo</span></span>
+          </a>
+        </li>
+      </ul>
+      <div class="share-panel" id="share-panel" hidden>
+        <label for="card-url">Card link</label>
+        <div class="share-controls">
+          <input id="card-url" type="url" readonly>
+          <button class="button contact-email" id="copy-link" type="button">Copy link</button>
+        </div>
+        <p id="copy-status" role="status"></p>
+      </div>
+    </section>
+  </main>
+  <footer class="frame footer">
+    <span>Charles Austin Manalo</span>
+    <a href="https://charlesmanalo.github.io/Portfolio/">View portfolio</a>
+  </footer>
+</body>
+</html>
