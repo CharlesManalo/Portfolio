@@ -127,7 +127,8 @@ h2 {
   height: auto;
   aspect-ratio: 5 / 4;
   object-fit: cover;
-  object-position: center 48%;
+  object-position: top center;
+  filter: contrast(1.1) brightness(1.05);
   border-radius: 2px;
   box-shadow: 0 12px 24px #442a3840;
 }
@@ -155,6 +156,7 @@ h2 {
   padding: .85rem .55rem;
   cursor: pointer;
   list-style: none;
+  transition: background-color .2s ease;
 }
 .service-group summary::-webkit-details-marker { display: none; }
 .service-group summary:hover, .service-group[open] summary { background: #f5eee8; }
@@ -168,6 +170,7 @@ h2 {
   border: solid currentColor;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+  transition: transform .24s ease;
 }
 .service-group[open] summary::after { transform: rotate(225deg); margin-block: .2rem 0; }
 .discovery { --group-ink: #91422d; }
@@ -283,4 +286,24 @@ dd { margin: 0; color: var(--muted); font-size: .92rem; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .button { transition: none; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .service-group[open] dl { animation: service-reveal .23s ease-out both; }
+  @keyframes service-reveal {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @supports selector(details::details-content) and (interpolate-size: allow-keywords) {
+    .service-group { interpolate-size: allow-keywords; }
+    .service-group::details-content {
+      block-size: 0;
+      overflow: clip;
+      transition: block-size .26s ease, content-visibility .26s allow-discrete;
+    }
+    .service-group[open]::details-content { block-size: auto; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-group summary, .service-group summary::after { transition: none; }
 }
